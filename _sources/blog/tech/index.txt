@@ -1,0 +1,13 @@
+:title: Technical
+
+Technical
+=========
+
+Here are some technical articles
+
+.. chronotoc::
+  :maxdepth: 1
+  :glob:
+
+  *
+

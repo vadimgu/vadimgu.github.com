@@ -1,0 +1,137 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Ad-hoc Command-line Quantiles</title>
+    <link rel="stylesheet" href="../../_static/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="../../_static/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="${ pathto('_static/blueprint/ie.css',1)}" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
+    <script type="text/javascript" src="../../_static/jquery.js">
+    </script><script type="text/javascript" src="../../_static/underscore.js">
+    </script><script type="text/javascript" src="../../_static/doctools.js">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+    <div id="header" class="span-24 last">
+      <h1>Vadim Gu</h1>
+    </div>
+    <div id="tocmenu" class="span-24 last">
+      <div class="span-16"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stories/index.html">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv.html">Resume</a></li>
+</ul>
+</div>
+      <div class="span-2" style="text-align:right;">
+        <a href="../../genindex.html">Index</a>
+      </div>
+      <div class="span-6 last" style="text-align:right;">
+<div id="searchbox">
+    <form action="../../search.html" method="get">
+      <input type="text" name="q" size="18">
+      <button type="submit">Search</button>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+      </div>
+    </div>
+    <hr>
+    <!--div class="related">${relbar()}</div-->
+    <div id="document" class="push-1 span-18 last">
+       <div class="body">
+  <div class="metadata quiet">
+    2010-02-25
+  </div>
+  <div class="section" id="ad-hoc-command-line-quantiles">
+<span id="index-0"></span><h1>Ad-hoc Command-line Quantiles</h1>
+<p>Let’s say we have a file with 100 numbers <a class="reference download internal" href="../../_downloads/numbers.txt"><tt class="xref download docutils literal"><span class="pre">numbers.txt</span></tt></a></p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> head -3 numbers.txt
+<span class="go">49</span>
+<span class="go">35</span>
+<span class="go">29</span>
+</pre></div>
+</div>
+<p>To get a sense of all data in a file we might want to calculate the <a class="reference external" href="http://en.wikipedia.org/wiki/Quartile">quartiles</a>.
+One way to calculate them is to sort the data and split it into 4 equal lines.
+Then the limits of the lines would be the <a class="reference external" href="http://en.wikipedia.org/wiki/Quartile">quartiles</a>. In this example we
+separate a sorted list in 4 equal lines with 25 numbers on each line.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> cat numbers.txt | sort -rn | xargs -n25
+<span class="go">107 95 93 85 84 84 74 73 73 73 71 70 70 70 68 68 66 66 66 65 65 64 64 64 64</span>
+<span class="go">63 63 61 61 61 61 60 59 59 58 58 57 57 54 54 54 53 53 53 53 52 52 52 52 51</span>
+<span class="go">50 49 49 48 47 46 46 45 45 44 44 43 42 42 42 42 42 42 40 39 39 39 37 36 36</span>
+<span class="go">35 35 35 35 32 32 32 31 31 29 28 26 24 24 23 18 18 18 17 16 16 11 7 6 4</span>
+</pre></div>
+</div>
+<p>And we take the first column</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> cat numbers.txt | sort -rn | xargs -n25 | cut -f1 -d<span class="s2">" "</span>
+<span class="go">107</span>
+<span class="go">63</span>
+<span class="go">50</span>
+<span class="go">35</span>
+</pre></div>
+</div>
+<p>We see here the four <a class="reference external" href="http://en.wikipedia.org/wiki/Quartile">quartiles</a> in a reverse order.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="15%">
+<col width="85%">
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Q<sub>0</sub></td>
+<td>4 Can be obtained by <tt class="docutils literal"><span class="pre">$cat</span> <span class="pre">numbers.txt</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">-rn</span> <span class="pre">|</span> <span class="pre">tail</span> <span class="pre">-1</span></tt></td>
+</tr>
+<tr class="row-even"><td>Q<sub>1</sub></td>
+<td>35</td>
+</tr>
+<tr class="row-odd"><td>Q<sub>2</sub></td>
+<td>50 (Also the median)</td>
+</tr>
+<tr class="row-even"><td>Q<sub>3</sub></td>
+<td>63</td>
+</tr>
+<tr class="row-odd"><td>Q<sub>4</sub></td>
+<td>107</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Another way to do the same thing is to make four equal columns with the sorted
+data and take the first line. This can be acheived using the <strong>pr</strong> program.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> cat numbers.txt | sort -nr | pr -l9999 -t -4 | head -1
+<span class="go">107           63               50                     35</span>
+</pre></div>
+</div>
+<p>When using <strong>pr</strong>, we don’t have to know in advance the number of lines in a
+file.</p>
+<p id="index-1">To find the <a class="reference external" href="http://en.wikipedia.org/wiki/Decile">deciles</a> it’s the same logic but with 10 columns</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> cat numbers | sort -nr | pr -l9999 -t -10 | head -1
+<span class="go">107    71    65    61    54    50        44    39        32     18</span>
+</pre></div>
+</div>
+<p>What’s with the <tt class="docutils literal"><span class="pre">-l9999</span></tt> you might ask. The answer is that I didn’t find a
+better way to columnate the data. The <strong>pr</strong> command is initially designed to
+produce output for a printer. We need to instruct <strong>pr</strong> that we want one huge
+page with n columns and not many pages with n columns. It works as long as the
+page length is bigger then the sample size divided by the number of columns. To
+get more columns from <strong>pr</strong> it needs the <tt class="docutils literal"><span class="pre">-w</span></tt> flag to specify the page
+width.</p>
+</div>
+</div>
+    </div>
+    <!--div id="sidebar" class="span-6 last">
+      ${sidebar()}
+    </div-->
+    <div id="footer" class="span-18 last small quiet">
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+    </div>
+    </div>
+  </body>
+</html>

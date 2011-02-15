@@ -1,27 +1,40 @@
-
+<html>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>About</title>
+    <title>Search</title>
     <link rel="stylesheet" href="_static/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="_static/blueprint/print.css" type="text/css" media="print">
-    <!--[if lt IE 8]><link rel="stylesheet" href="${ pathto('_static/blueprint/ie.css',1)}" type="text/css" media="screen, projection"><![endif]-->
     <link rel="stylesheet" href="_static/site.css" type="text/css">
     <link rel="stylesheet" href="_static/pygments.css" type="text/css">
     <script type="text/javascript" src="_static/jquery.js">
     </script><script type="text/javascript" src="_static/underscore.js">
     </script><script type="text/javascript" src="_static/doctools.js">
     </script>
-  </head>
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+  <script type="text/javascript" src="_static/searchtools.js"></script>
+  <script type="text/javascript">
+    var search_index = "searchindex.js"
+    jQuery(function() { Search.loadIndex(search_index); });
+  </script>
+</head>
   <body>
     <div class="container">
     <div id="header" class="span-24 last">
       <h1>Vadim Gu</h1>
     </div>
     <div id="tocmenu" class="span-24 last">
-      <div class="span-16"><ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Home</a></li>
+      <div class="span-16"><ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="blog/tech/index.html">Tech</a></li>
 <li class="toctree-l1"><a class="reference internal" href="blog/stories/index.html">Misc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="projects.html">Projects</a></li>
@@ -32,26 +45,27 @@
         <a href="genindex.html">Index</a>
       </div>
       <div class="span-6 last" style="text-align:right;">
-<div id="searchbox">
-    <form action="search.html" method="get">
-      <input type="text" name="q" size="18">
-      <button type="submit">Search</button>
-      <input type="hidden" name="check_keywords" value="yes">
-      <input type="hidden" name="area" value="default">
-    </form>
-</div>
       </div>
     </div>
     <hr>
     <!--div class="related">${relbar()}</div-->
     <div id="document" class="push-1 span-18 last">
        <div class="body">
-  <div class="section" id="about">
-<h1>About</h1>
-<p>My name is Vadim Gubergrits. I live in Brossard with my wife and two sons. I’m
-a programmer working for Outbox Technology located in Montreal.</p>
-<p>In my spare time I read books, play music or program.</p>
-</div>
+  <h1 id="search-documentation">Search</h1>
+  <div id="fallback" class="admonition warning">
+    <script type="text/javascript">jQuery('#fallback').hide();</script>
+    <p>
+      Please activate JavaScript to enable the search
+      functionality.
+    </p>
+  </div>
+  <form action="" method="get">
+    <input type="text" name="q" value="">
+    <button type="submit">Search</button>
+    <span id="search-progress" style="padding-left: 10px"></span>
+  </form>
+  <div id="search-results">
+  </div>
 </div>
     </div>
     <!--div id="sidebar" class="span-6 last">
@@ -62,4 +76,5 @@ a programmer working for Outbox Technology located in Montreal.</p>
     </div>
     </div>
   </body>
+</html>
 </html>

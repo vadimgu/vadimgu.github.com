@@ -1,0 +1,119 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Optimize your browsing with Vimperator</title>
+    <link rel="stylesheet" href="../../_static/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="../../_static/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="${ pathto('_static/blueprint/ie.css',1)}" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
+    <script type="text/javascript" src="../../_static/jquery.js">
+    </script><script type="text/javascript" src="../../_static/underscore.js">
+    </script><script type="text/javascript" src="../../_static/doctools.js">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+    <div id="header" class="span-24 last">
+      <h1>Vadim Gu</h1>
+    </div>
+    <div id="tocmenu" class="span-24 last">
+      <div class="span-16"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stories/index.html">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv.html">Resume</a></li>
+</ul>
+</div>
+      <div class="span-2" style="text-align:right;">
+        <a href="../../genindex.html">Index</a>
+      </div>
+      <div class="span-6 last" style="text-align:right;">
+<div id="searchbox">
+    <form action="../../search.html" method="get">
+      <input type="text" name="q" size="18">
+      <button type="submit">Search</button>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+      </div>
+    </div>
+    <hr>
+    <!--div class="related">${relbar()}</div-->
+    <div id="document" class="push-1 span-18 last">
+       <div class="body">
+  <div class="metadata quiet">
+    2008-12-31
+  </div>
+  <div class="section" id="optimize-your-browsing-with-vimperator">
+<h1>Optimize your browsing with Vimperator</h1>
+<p>I’m a Vim user and write code in it all the time at work and at home. I enjoy
+its modal interface which gives the keyboard much more power. I always miss it
+in other applications and apparently I’m not alone. Martin Stubenschrott
+created a Firefox add-on called <a class="reference external" href="http://vimperator.mozdev.org/">Vimperator</a>
+which makes the browser modal with Vim inspired key bindings.</p>
+<p>Being modal, Vimperator requires some learning before doing some basic
+navigation with the promise to make the browsing more effective. Once the
+basics are acquired you can continue to optimize your browsing. The basic idea
+is in 3 steps:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Always look for patterns in your own browsing.</li>
+<li>Once a pattern is identified find a way to optimize it (using an existing
+commands or create your own).</li>
+<li>Make it a habit.</li>
+</ol>
+</div></blockquote>
+<p>For example, I use Wikipedia a lot when I browse. I would copy a word or
+remember it, open a new tab, type “wikipedia.org” in a location bar, search for
+the word by pasting it in the search field and pressing the search button or
+hit the return key.</p>
+<p>Vimperator allows us to define key mappings. Here is what I did for my
+Wikipedia pattern.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">map</span> <span class="nx">ww</span> <span class="o">:</span><span class="nx">js</span> <span class="nx">open</span><span class="p">(</span><span class="s2">"wikipedia "</span> <span class="o">+</span> <span class="nx">buffer</span><span class="p">.</span><span class="nx">getCurrentWord</span><span class="p">(),</span><span class="o">\</span>
+           <span class="nx">liberator</span><span class="p">.</span><span class="nx">NEW_TAB</span><span class="p">)</span> <span class="o">&lt;</span><span class="nx">CR</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Now the same action of looking up a word in wikipedia is reduced to clicking on
+a word and pressing “ww”. When done “d” will close the newly open tab. Making
+it a habit is a matter of time and left as an exercise to the reader.</p>
+<p>Vimperator opened a wide range of possibilities which were only wishes a couple
+of days ago. Did you sometimes try to concentrate on some text but the images
+around the text were so distracting you wished they disappear? No problem, just
+put the following text in your vimperatorrc file (~/.vimperatorrc on UNIX)</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="o">:</span><span class="nx">js</span> <span class="o">&lt;&lt;</span> <span class="nx">EOF</span>
+  <span class="nx">hide_images</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">images</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">content</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"img"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">each</span><span class="p">(</span><span class="kd">var</span> <span class="nx">image</span> <span class="k">in</span> <span class="nx">images</span><span class="p">){</span>
+      <span class="nx">image</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="s1">'hidden'</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="nx">EOF</span>
+
+<span class="nx">map</span> <span class="nx">gx</span> <span class="o">:</span><span class="nx">js</span> <span class="nx">hide_images</span><span class="p">()</span> <span class="o">&lt;</span><span class="nx">CR</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Now pressing “gx” will make all the images on the current page
+disappear and you can read the text visually undisturbed.</p>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>Vimperator makes the browsing more efficient and it opens a possibility of
+customizing Firefox without writing a full add-on. Being powerfull it requires
+some learning time with great rewards.</p>
+</div>
+</div>
+</div>
+    </div>
+    <!--div id="sidebar" class="span-6 last">
+      ${sidebar()}
+    </div-->
+    <div id="footer" class="span-18 last small quiet">
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+    </div>
+    </div>
+  </body>
+</html>

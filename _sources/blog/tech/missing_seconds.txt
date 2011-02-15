@@ -1,0 +1,40 @@
+:date: 2011-02-10
+
+.. index:: single: bash; brace expansion
+           single: bash; join
+
+Missing Seconds
+===============
+
+Let's say we have a text file :download:`time.txt<scripts/time.txt>` with a
+time column. How to find skipped (or missing) seconds? 
+
+First we generate all the seconds for the period of interest using the `bash brace
+expansion`_.
+
+.. code-block:: console
+
+  $ printf "%s\n" 10:{00..59}:{00..59}
+  10:00:00
+  10:00:01
+  10:00:02
+  ...
+  10:59:57
+  10:59:58
+  10:59:59
+
+
+Then we join the file containing missing seconds with the generated seconds
+asking for unpairable items from file 2.
+
+.. code-block:: console
+
+  $ join -j1 -v2 time.txt  <(printf "%s\n" 10:{00..59}:{00..59})
+  10:56:40
+  10:56:41
+  10:56:42
+  10:59:13
+
+
+   
+.. _`bash brace expansion`: http://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion

@@ -1,0 +1,33 @@
+:title: My Projects
+
+
+My Projects
+=======================
+
+Here is a list of projects that I developed.
+
+
+RestedBlogger_
+-----------------
+
+Publish reStructuredText documents to blogger_. 
+
+.. _blogger: http://blogger.com
+.. _RestedBlogger: https://github.com/vadimgu/restedblogger
+
+Sphinx plugins 
+--------------
+
+Plugins for Sphinx_ in Sphinx-contrib_
+
+gnuplot 
+  Include gnuplot plots in Sphinx documents
+autorun
+  Execute code and attach its output to Sphinx documents
+
+.. chronotoc
+..   Make a chronological table of contents.
+
+.. _Sphinx: http://sphinx.pocoo.org/
+.. _Sphinx-contrib:  https://bitbucket.org/birkenfeld/sphinx-contrib
+

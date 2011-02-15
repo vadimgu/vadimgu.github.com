@@ -1,0 +1,18 @@
+Vadim's Site
+============
+
+
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+
+   Home <index>
+   Tech <blog/tech/index>
+   Misc <blog/stories/index>
+   Projects <projects>
+   Resume <cv>
+   
+
+
+

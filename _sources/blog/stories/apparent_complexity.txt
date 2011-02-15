@@ -1,0 +1,76 @@
+:date: 2011-01-20
+
+The Apparent Complexity of a Saxophone
+======================================
+
+.. figure:: images/sax.jpg 
+  :width: 250px
+  :align: left
+  :target: http://commons.wikimedia.org/wiki/File:Saxophone_alto.jpg
+
+  by `altarex@wikipedia.org <http://commons.wikimedia.org/wiki/File:Saxophone_alto.jpg>`_
+
+
+It's been a year since I started playing saxophone. Considering that I practice
+some mediocre 2 to 5 hours a week, I still have a lot to learn. 
+
+The first time I saw a saxophone I was impressed and intimidated by the
+complexity of the instrument. It can be perceived as beautiful from afar but
+once I tooke a closer look, I saw a very complex system of rods and levers
+mounted with springs. Almost as if some mad scientist designed it in his worst
+nightmare. 
+
+This apparent complexity of a saxophone disappears after a couple of days with
+the instrument. At this point one can start producing some tolerable sound and
+make an attempt at playing a simple melody or a scale. 
+
+The main principle of a saxophone is simple. To put it shortly a saxophone is a
+cone with holes that you can close. When all the holes are closed, you get the
+longest cone, producing the lowest note. The complex mechanism allows a human,
+using 8 fingers (left thumb controls the octave key and the right thumb holds
+the instrument), control 24 holes at the same time without moving much.  Just
+watch `Charlie Parker play`_ and look how his fingers are barely moving and yet
+he's playing very fast.
+
+
+
+
+The Apparent Simplicity of a Trumpet
+------------------------------------
+
+.. figure:: images/trumpet.jpg 
+  :width: 350px
+  :align: right
+  :target: http://commons.wikimedia.org/wiki/File:Trumpet_1.jpg
+  
+  by `PJ@wikipedia.org <http://commons.wikimedia.org/wiki/File:Trumpet_1.jpg>`_
+
+On the other hand, a trumpet seems to be much simpler, having only three
+valves. But this apparent simplicity hides such a complexity that I was unable
+to play it, not even a scale. It required much more work. 
+
+Basically, a trumpet is a long cylinder. The length of a cylinder is controlled
+by the valves. Pressing each valve makes the cylinder longer. If you push all
+three valves down you get the longest cylinder producing the lowest note. All
+possible combinations of valves gives us only 7 chromatic notes (one full
+chromatic scale has 12 notes). To play higher, a trumpet player must extract
+other harmonics by changing his lips tension. I hope you understand the
+complexity of note extraction on a trumpet. 
+
+
+In the end both instruments can be played and produce beautiful music. My point
+is that in life this same pattern can be found elsewhere, when the apparent
+complexity hides a very powerful and simple to use mechanism, and when the
+apparent elegance and simplicity hides a difficult and incomprehensible
+mechanism. We often get seduced by the "trumpets" discarding the "saxophones". 
+
+
+To learn more, there are very good articles on `saxophone acoustics`_ and on
+`brass acoustics`_ at UNSW.
+
+
+.. _saxophone acoustics: http://www.phys.unsw.edu.au/jw/saxacoustics.html
+
+.. _brass acoustics: http://www.phys.unsw.edu.au/jw/brassacoustics.html
+
+.. _Charlie Parker play: http://www.youtube.com/watch?v=DjElQ6Ekr9o

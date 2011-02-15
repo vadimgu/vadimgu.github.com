@@ -1,0 +1,67 @@
+:date: 2008-12-31
+
+Optimize your browsing with Vimperator
+======================================
+
+I'm a Vim user and write code in it all the time at work and at home. I enjoy
+its modal interface which gives the keyboard much more power. I always miss it
+in other applications and apparently I'm not alone. Martin Stubenschrott
+created a Firefox add-on called `Vimperator <http://vimperator.mozdev.org/>`__
+which makes the browser modal with Vim inspired key bindings.
+
+Being modal, Vimperator requires some learning before doing some basic
+navigation with the promise to make the browsing more effective. Once the
+basics are acquired you can continue to optimize your browsing. The basic idea
+is in 3 steps:
+
+  1. Always look for patterns in your own browsing.
+  2. Once a pattern is identified find a way to optimize it (using an existing
+     commands or create your own).
+  3. Make it a habit.
+
+For example, I use Wikipedia a lot when I browse. I would copy a word or
+remember it, open a new tab, type "wikipedia.org" in a location bar, search for
+the word by pasting it in the search field and pressing the search button or
+hit the return key.
+
+Vimperator allows us to define key mappings. Here is what I did for my
+Wikipedia pattern.
+
+.. sourcecode:: javascript
+  
+  map ww :js open("wikipedia " + buffer.getCurrentWord(),\
+             liberator.NEW_TAB) <CR>
+
+Now the same action of looking up a word in wikipedia is reduced to clicking on
+a word and pressing "ww". When done "d" will close the newly open tab. Making
+it a habit is a matter of time and left as an exercise to the reader.
+
+Vimperator opened a wide range of possibilities which were only wishes a couple
+of days ago. Did you sometimes try to concentrate on some text but the images
+around the text were so distracting you wished they disappear? No problem, just
+put the following text in your vimperatorrc file (~/.vimperatorrc on UNIX)
+
+.. sourcecode:: javascript
+
+  :js << EOF
+    hide_images = function() {
+      var images = window.content.document.getElementsByTagName("img")
+      for each(var image in images){
+        image.style.visibility = 'hidden'
+      }
+    }
+  EOF
+
+  map gx :js hide_images() <CR>
+
+Now pressing "gx" will make all the images on the current page
+disappear and you can read the text visually undisturbed.
+
+
+Conclusion
+----------
+
+Vimperator makes the browsing more efficient and it opens a possibility of
+customizing Firefox without writing a full add-on. Being powerfull it requires
+some learning time with great rewards.
+

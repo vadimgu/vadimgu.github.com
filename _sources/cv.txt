@@ -1,0 +1,34 @@
+
+Resume - Vadim Gubergrits
+=========================
+
+:email: vadim.gubergrits@gmail.com
+
+Current Employment
+------------------
+
+As of May 2005 I work for `Outbox Technology`_ as a Programmer. 
+
+Education
+---------
+
+I received a Bachelor's degree in Computer Engineering from `Ecole Polytechnique
+de Montreal`_ in 2003
+
+Programming
+-----------
+
+I work on Linux mostly in Python. Also know Javascript, SQL, HTML, CSS, PHP,
+Java and C.
+
+
+Speaking
+--------
+  
+French, English, Russian
+
+
+
+.. _`Outbox Technology`: http://www.outboxtechnology.com
+.. _`Ecole Polytechnique de Montreal`: http://www.polymtl.ca
+

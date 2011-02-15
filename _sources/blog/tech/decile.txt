@@ -1,0 +1,88 @@
+:date: 2010-02-25
+
+
+.. index:: single: command-line; quantile
+           single: command-line; quartile
+
+
+Ad-hoc Command-line Quantiles
+=================================
+.. _quantiles: http://en.wikipedia.org/wiki/Quantile
+.. _quartiles: http://en.wikipedia.org/wiki/Quartile
+.. _deciles: http://en.wikipedia.org/wiki/Decile
+
+
+Let's say we have a file with 100 numbers :download:`numbers.txt
+<scripts/numbers.txt>`
+
+.. code-block:: console
+
+  $ head -3 numbers.txt
+  49
+  35
+  29
+
+To get a sense of all data in a file we might want to calculate the quartiles_.
+One way to calculate them is to sort the data and split it into 4 equal lines.
+Then the limits of the lines would be the quartiles_. In this example we
+separate a sorted list in 4 equal lines with 25 numbers on each line.
+
+
+.. code-block:: console 
+
+  $ cat numbers.txt | sort -rn | xargs -n25
+  107 95 93 85 84 84 74 73 73 73 71 70 70 70 68 68 66 66 66 65 65 64 64 64 64
+  63 63 61 61 61 61 60 59 59 58 58 57 57 54 54 54 53 53 53 53 52 52 52 52 51
+  50 49 49 48 47 46 46 45 45 44 44 43 42 42 42 42 42 42 40 39 39 39 37 36 36
+  35 35 35 35 32 32 32 31 31 29 28 26 24 24 23 18 18 18 17 16 16 11 7 6 4
+  
+And we take the first column
+
+.. code-block:: console 
+
+  $ cat numbers.txt | sort -rn | xargs -n25 | cut -f1 -d" "
+  107
+  63 
+  50 
+  35 
+
+We see here the four quartiles_ in a reverse order. 
+
+  =========== =========================
+  Q\ :sub:`0` 4 Can be obtained by ``$cat numbers.txt | sort -rn | tail -1``
+  Q\ :sub:`1` 35
+  Q\ :sub:`2` 50 (Also the median)
+  Q\ :sub:`3` 63        
+  Q\ :sub:`4` 107    
+  =========== =========================
+ 
+
+Another way to do the same thing is to make four equal columns with the sorted
+data and take the first line. This can be acheived using the **pr** program.
+
+.. code-block:: console
+
+  $ cat numbers.txt | sort -nr | pr -l9999 -t -4 | head -1
+  107	        63	         50		        35
+
+When using **pr**, we don't have to know in advance the number of lines in a
+file. 
+ 
+.. index:: single: command-line; decile
+
+To find the `deciles`_ it's the same logic but with 10 columns
+
+.. code-block:: console
+
+  $ cat numbers | sort -nr | pr -l9999 -t -10 | head -1
+  107    71    65    61	   54    50	   44    39	   32     18
+
+What's with the ``-l9999`` you might ask. The answer is that I didn't find a
+better way to columnate the data. The **pr** command is initially designed to
+produce output for a printer. We need to instruct **pr** that we want one huge
+page with n columns and not many pages with n columns. It works as long as the
+page length is bigger then the sample size divided by the number of columns. To
+get more columns from **pr** it needs the ``-w`` flag to specify the page
+width.
+
+

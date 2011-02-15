@@ -1,0 +1,9 @@
+Stories
+=======
+
+.. chronotoc::
+  :maxdepth: 1
+  :glob:
+
+  *
+

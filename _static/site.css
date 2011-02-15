@@ -1,0 +1,31 @@
+html {overflow-y: scroll;}
+body{ font-size:100%; margin-top:1em;}
+h1 { font-size:1.5em; }
+h2 { font-size:1.2em; }
+h3 { font-size:1.1em; }
+h4 { font-size:1.0em; }
+h5 { font-size:0.9em; }
+
+/* reStructuredText                                          */
+/*-----------------------------------------------------------*/
+p {text-align: justify; padding-right:0.5em;}
+p.rubric { margin-top: 2em; font-weight: bold; }
+p.attribution {text-align: right;}
+.field-list {width:0;}
+img.align-left, .figure.align-left, object.align-left { clear: left; float: left; margin-right: 1em; }
+img.align-right, .figure.align-right, object.align-right { clear: right; float: right; margin-left: 1em; }
+img.align-center, .figure.align-center, object.align-center { display: block; margin-left: auto; margin-right: auto; }
+.align-left { text-align: left; }
+.align-center { clear: both; text-align: center; }
+.align-right { text-align: right; }
+/*-----------------------------------------------------------*/
+
+div.metadata {font-size:0.8em;} 
+div.body { margin: 2em 0em; }
+.indextable dl {margin:0;}
+#header h1{ font-size: 1.5em; }
+#tocmenu         { padding:2px;}
+#tocmenu ul      { padding:0; margin:0;}
+#tocmenu ul li   { padding: 1em 1em 1em 0em; margin: 0; display: inline; list-style-type: none; }
+#tocmenu a { text-decoration: none; }
+

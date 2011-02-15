@@ -1,0 +1,79 @@
+:date: 2009-10-01
+
+The Pepper Mill
+===============
+
+.. epigraph:: 
+
+  *Déformation professionnelle* is a French phrase, meaning a tendency to look at
+  things from the point of view of one's own profession.
+
+  -- Wikipedia
+
+My friend Arach and I went to a restaurant for lunch. The waitress served us
+food. She forgot the pepper mill and before bringing it she asked Arach if he
+wanted some pepper.  Arach said yes. Then something completely unexpected
+happened. Instead of going expeditiously for the pepper mill the waitress asked
+me if I would like some pepper too.
+
+This was so disturbing I was speechless! 
+
+Everybody knows that when evaluating a boolean expression, the second term of an
+`or` condition is not evaluated when the first term evaluates to a true value.
+
+For example let's take the following code:
+
+.. sourcecode:: python
+
+  if AliceWantsPepper() or BobWantsPepper():
+    BringThePepper()
+
+
+In the previous code ``BobWantsPepper()`` MUST NOT be evaluated if
+``AliceWantsPepper()`` is true. Any decent compiler works this way. I wrote
+``pepper.py`` to prove it.
+
+.. sourcecode:: python
+
+  def AliceWantsPepper():
+    print "Alice was asked about the pepper"
+    return True
+
+  def BobWantsPepper():
+    print "Bob was asked about the pepper"
+    return True
+
+  shouldIBringThePepper = AliceWantsPepper() or BobWantsPepper()
+
+
+
+Executing ``pepper.py`` prints
+
+.. code-block:: console
+
+  $ python pepper.py
+  Alice was asked about the pepper
+
+Only Alice was asked about the pepper. And here's the python byte code that
+explains it all.
+
+.. sourcecode:: console
+
+  $ python -i pepper.py
+  >>> import code
+  >>> import dis
+  >>> dis.dis(
+  ... code.compile_command("AliceWantsPepper() or BobWantsPepper()"))
+  1           0 LOAD_NAME                0 (AliceWantsPepper)
+              3 CALL_FUNCTION            0
+              6 JUMP_IF_TRUE             7 (to 16)
+              9 POP_TOP             
+             10 LOAD_NAME                1 (BobWantsPepper)
+             13 CALL_FUNCTION            0
+        >>   16 PRINT_EXPR          
+             17 LOAD_CONST               0 (None)
+             20 RETURN_VALUE        
+  
+
+The ``JUMP_IF_TRUE`` to 16 is self-explanatory.  How will I ever go to this
+restaurant again?

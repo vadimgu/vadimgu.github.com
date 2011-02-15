@@ -1,0 +1,10 @@
+Blog
+====
+
+Toctree 
+
+.. chronotoc::
+  :maxdepth: 2
+  :glob:
+
+  * 

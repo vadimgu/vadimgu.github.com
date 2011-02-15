@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>The Pepper Mill</title>
+    <link rel="stylesheet" href="../../_static/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="../../_static/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="${ pathto('_static/blueprint/ie.css',1)}" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="../../_static/site.css" type="text/css">
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css">
+    <script type="text/javascript" src="../../_static/jquery.js">
+    </script><script type="text/javascript" src="../../_static/underscore.js">
+    </script><script type="text/javascript" src="../../_static/doctools.js">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+    <div id="header" class="span-24 last">
+      <h1>Vadim Gu</h1>
+    </div>
+    <div id="tocmenu" class="span-24 last">
+      <div class="span-16"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech/index.html">Tech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Misc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects.html">Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cv.html">Resume</a></li>
+</ul>
+</div>
+      <div class="span-2" style="text-align:right;">
+        <a href="../../genindex.html">Index</a>
+      </div>
+      <div class="span-6 last" style="text-align:right;">
+<div id="searchbox">
+    <form action="../../search.html" method="get">
+      <input type="text" name="q" size="18">
+      <button type="submit">Search</button>
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+      </div>
+    </div>
+    <hr>
+    <!--div class="related">${relbar()}</div-->
+    <div id="document" class="push-1 span-18 last">
+       <div class="body">
+  <div class="metadata quiet">
+    2009-10-01
+  </div>
+  <div class="section" id="the-pepper-mill">
+<h1>The Pepper Mill</h1>
+<blockquote class="epigraph">
+<div><p><em>Déformation professionnelle</em> is a French phrase, meaning a tendency to look at
+things from the point of view of one’s own profession.</p>
+<p class="attribution">—Wikipedia</p>
+</div></blockquote>
+<p>My friend Arach and I went to a restaurant for lunch. The waitress served us
+food. She forgot the pepper mill and before bringing it she asked Arach if he
+wanted some pepper.  Arach said yes. Then something completely unexpected
+happened. Instead of going expeditiously for the pepper mill the waitress asked
+me if I would like some pepper too.</p>
+<p>This was so disturbing I was speechless!</p>
+<p>Everybody knows that when evaluating a boolean expression, the second term of an
+<cite>or</cite> condition is not evaluated when the first term evaluates to a true value.</p>
+<p>For example let’s take the following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="n">AliceWantsPepper</span><span class="p">()</span> <span class="ow">or</span> <span class="n">BobWantsPepper</span><span class="p">():</span>
+  <span class="n">BringThePepper</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the previous code <tt class="docutils literal"><span class="pre">BobWantsPepper()</span></tt> MUST NOT be evaluated if
+<tt class="docutils literal"><span class="pre">AliceWantsPepper()</span></tt> is true. Any decent compiler works this way. I wrote
+<tt class="docutils literal"><span class="pre">pepper.py</span></tt> to prove it.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">AliceWantsPepper</span><span class="p">():</span>
+  <span class="k">print</span> <span class="s">"Alice was asked about the pepper"</span>
+  <span class="k">return</span> <span class="bp">True</span>
+
+<span class="k">def</span> <span class="nf">BobWantsPepper</span><span class="p">():</span>
+  <span class="k">print</span> <span class="s">"Bob was asked about the pepper"</span>
+  <span class="k">return</span> <span class="bp">True</span>
+
+<span class="n">shouldIBringThePepper</span> <span class="o">=</span> <span class="n">AliceWantsPepper</span><span class="p">()</span> <span class="ow">or</span> <span class="n">BobWantsPepper</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Executing <tt class="docutils literal"><span class="pre">pepper.py</span></tt> prints</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python pepper.py
+<span class="go">Alice was asked about the pepper</span>
+</pre></div>
+</div>
+<p>Only Alice was asked about the pepper. And here’s the python byte code that
+explains it all.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python -i pepper.py
+<span class="gp">&gt;</span>&gt;&gt; import code
+<span class="gp">&gt;</span>&gt;&gt; import dis
+<span class="gp">&gt;</span>&gt;&gt; dis.dis<span class="o">(</span>
+<span class="go">... code.compile_command("AliceWantsPepper() or BobWantsPepper()"))</span>
+<span class="go">1           0 LOAD_NAME                0 (AliceWantsPepper)</span>
+<span class="go">            3 CALL_FUNCTION            0</span>
+<span class="go">            6 JUMP_IF_TRUE             7 (to 16)</span>
+<span class="go">            9 POP_TOP</span>
+<span class="go">           10 LOAD_NAME                1 (BobWantsPepper)</span>
+<span class="go">           13 CALL_FUNCTION            0</span>
+<span class="go">      &gt;&gt;   16 PRINT_EXPR</span>
+<span class="go">           17 LOAD_CONST               0 (None)</span>
+<span class="go">           20 RETURN_VALUE</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">JUMP_IF_TRUE</span></tt> to 16 is self-explanatory.  How will I ever go to this
+restaurant again?</p>
+</div>
+</div>
+    </div>
+    <!--div id="sidebar" class="span-6 last">
+      ${sidebar()}
+    </div-->
+    <div id="footer" class="span-18 last small quiet">
+        Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+    </div>
+    </div>
+  </body>
+</html>
