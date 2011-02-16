@@ -35,6 +35,15 @@ asking for unpairable items from file 2.
   10:56:42
   10:59:13
 
+.. note::
+
+  You don't have to write the printf line twice. It's possible to refer to it
+  using a "**!!**" history expansion.
+
+  .. code-block:: console 
+
+    $ printf "%s\n" 10:{00..59}:{00..59}
+    $ join -j1 -v2 time.txt  <(!!)
 
    
 .. _`bash brace expansion`: http://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion

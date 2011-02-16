@@ -1,6 +1,6 @@
 html {overflow-y: scroll;}
 body{ font-size:100%; margin-top:1em;}
-h1 { font-size:1.5em; }
+h1 { font-size:1.5em; text-align: center; margin-bottom:1.5em;}
 h2 { font-size:1.2em; }
 h3 { font-size:1.1em; }
 h4 { font-size:1.0em; }
@@ -18,12 +18,19 @@ img.align-center, .figure.align-center, object.align-center { display: block; ma
 .align-left { text-align: left; }
 .align-center { clear: both; text-align: center; }
 .align-right { text-align: right; }
+
+div.admonition { margin:0.5em 0em; padding: 0.8em; border:2px solid; }
+p.admonition-title {font-weight: bold; }
+
+div.note {background:#d5edf8;color:#205791;border-color:#92cae4;}
+div.warning {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+div.warning a {color:#8a1f11;}
 /*-----------------------------------------------------------*/
 
-div.metadata {font-size:0.8em;} 
+div.metadata {font-size:0.8em; text-align:center;} 
 div.body { margin: 2em 0em; }
 .indextable dl {margin:0;}
-#header h1{ font-size: 1.5em; }
+#header h1{ font-size: 1.3em; font-variant: small-caps;}
 #tocmenu         { padding:2px;}
 #tocmenu ul      { padding:0; margin:0;}
 #tocmenu ul li   { padding: 1em 1em 1em 0em; margin: 0; display: inline; list-style-type: none; }

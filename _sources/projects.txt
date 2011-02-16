@@ -4,7 +4,6 @@
 My Projects
 =======================
 
-Here is a list of projects that I developed.
 
 
 RestedBlogger_
